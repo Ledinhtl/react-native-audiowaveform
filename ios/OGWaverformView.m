@@ -263,11 +263,12 @@
     for (NSInteger intSample = 0 ; intSample < sampleCount ; intSample ++ ) {
         Float32 left = *samples++;
         float pixels = (left - noiseFloor) * sampleAdjustmentFactor;
-        CGContextMoveToPoint(context, intSample, centerLeft-pixels);
-        CGContextAddLineToPoint(context, intSample, centerLeft+pixels);
-        CGContextSetStrokeColorWithColor(context, wavecolor);
-        CGContextStrokePath(context);
-
+        for (int i = 0; i < 3; i++) {
+            CGContextMoveToPoint(context, intSample, centerLeft-pixels);
+            CGContextAddLineToPoint(context, intSample, centerLeft+pixels);
+            CGContextSetStrokeColorWithColor(context, wavecolor);
+            CGContextStrokePath(context);
+        }        
        /** if (channelCount==2) {
             Float32 right = *samples++;
             float pixels = (right - noiseFloor) * sampleAdjustmentFactor;
